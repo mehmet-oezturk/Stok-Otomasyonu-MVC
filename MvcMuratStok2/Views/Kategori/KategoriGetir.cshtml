@@ -1,0 +1,21 @@
+﻿@model MvcMuratStok2.Models.Entity.TBLKATEGORILER
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@*//beginform için  3tane parametre veriyoruz 1.nereyi çalıştıracak(orenegin güncelle) 2.çalışacak yer nerede orayı yazacak(güncelle kategorinin içinde kategori yazacak) 3.nezaman çalışacak *@
+@using (Html.BeginForm("Guncelle", "Kategori", FormMethod.Post))
+{
+<div class="form-group">
+    @Html.LabelFor(m => m.KATEGORIID)
+    @Html.TextBoxFor(m => m.KATEGORIID, new { @class = "form-control" })@*buradaki new class sebebi daha iyi gözüksün diye *@<br/>
+    @Html.LabelFor(m => m.KATEGORIAD)
+    @Html.TextBoxFor(m => m.KATEGORIAD, new { @class = "form-control" })
+</div>
+    <div>
+        <button class="btn btn-warning">Kategori Güncelle
+
+        </button>
+    </div>
+}
+

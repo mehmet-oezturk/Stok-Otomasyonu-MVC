@@ -1,0 +1,53 @@
+﻿@using MvcMuratStok2.Models.Entity;
+@model List<TBLURUN>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    @*satır*@
+    <thead>
+        <tr>
+
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>MARKA</th>
+            <th>KATEGORİ</th>
+            <th>FİYAT</th>
+            <th>STOK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ur in Model)
+        {
+            <tr>
+                <td>@ur.URUNID</td>
+                <td>@ur.URUNAD</td>
+                <td>@ur.URUNMARKA</td>
+                <td>@ur.TBLKATEGORILER.KATEGORIAD</td>
+                @*sql deki innder join mantığıyla buraya kategori adını verdik*@
+                <td>@ur.FİYAT</td>
+                <td>@ur.STOK</td>
+                <td><a href="/URUN/SIL/@ur.URUNID" class="btn btn-danger">SİL</a></td>
+                <td><a href="/URUN/UrunGetir/@ur.URUNID" class="btn btn-success">GÜNCELLE</a></td>
+            </tr>
+        }
+    </tbody>
+
+    </tr>
+</table>
+<a href="/URUN/UrunEkle/" class="btn btn-primary">YENİ ÜRÜN EKLE</a>
+<link href="~/Content/DataTables/css/buttons.bootstrap4.css" rel="stylesheet" />
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs-3.3.7/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/r-2.1.1/sc-1.4.2/se-1.2.2/datatables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#tbl1').DataTable({
+            language: {
+                "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Turkish.json"
+            }
+        });
+    });
+</script>

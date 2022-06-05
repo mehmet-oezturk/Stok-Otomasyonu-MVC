@@ -1,0 +1,35 @@
+﻿@using MvcMuratStok2.Models.Entity;@*bunu ekliyoruz bu sayfadaki pagedlist le ilgili olanları listeleme işlemini sayfalara ayırmak için ekliyoruz*@
+@using PagedList
+@using  PagedList.Mvc
+@model PagedList.IPagedList<TBLKATEGORILER>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    @*satır*@<tr>
+
+    <th>KATEGORI ID</th>
+    @*sütun*@
+    <th>KATEGORI ADI</th>
+    <th>SİL</th>
+    <th>GÜNCELLE</th>
+    <tbody>
+        @foreach(var kt in Model)
+            {
+        <tr>
+            <td>@kt.KATEGORIID</td>
+            <td>@kt.KATEGORIAD</td>
+            <td><a href="/KATEGORI/SIL/@kt.KATEGORIID" class="btn btn-danger">SİL</a></td>
+            <td><a href="/KATEGORI/KategoriGetir/@kt.KATEGORIID" class="btn btn-success">GÜNCELLE</a></td>
+
+        </tr>
+            }
+    </tbody>
+
+</tr>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new {sayfa}))
+<a href="/KATEGORI/Yenikategori/" class="btn btn-primary">YENİ KATEGORİ EKLE</a>
+

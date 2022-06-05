@@ -1,0 +1,31 @@
+﻿@model MvcMuratStok2.Models.Entity.TBLURUN
+@{
+    ViewBag.Title = "UrunEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    <div>
+        <label>Ürün Adı</label>
+        <input type="text" class="form-control" name="URUNAD" required="" maxlength="50" />@*buradaki name ile sql deki tablo ismi aynı olmak zorunda farklı valitionlar eklemek için aralaına boşluk bırkıyoruz maxlengt olayında yazarken max degerden fazlasını yazmamıza izin vermez*@
+    </div>
+    <div>
+        <label>Ürünün Markası</label>
+        <input type="text" class="form-control" name="URUNMARKA" placeholder="Buraya markayı yazınız..." />
+    </div>
+    <div>
+        <label>Kategori Seçiniz</label>@*combobox dolumu için burayı kullandık ve yukarıdaki mvc modeli ekledik*@
+        @Html.DropDownListFor(m=>m.TBLKATEGORILER.KATEGORIID,(List<SelectListItem>)ViewBag.dg,new {@class="form-control" })
+    </div>
+    <div>
+        <label>Fiyat</label>
+        <input type="text" class="form-control" name="FİYAT" />
+    </div>
+    <div>
+        <label>Stok</label>
+        <input type="text" class="form-control" name="STOK" />
+    </div>
+    <div style="margin-top: 15px"> <button class="btn-btninfo">Ürün Ekle</button></div>
+
+</form>
+
